@@ -36,7 +36,7 @@ jobs:
     - name: Build component
       working-directory: ${{github.workspace}}/build
       shell: bash
-      run: cmake -DCMAKE_LIBRARY_PATH=/media/developer/apps/usr/palm/services/org.webosbrew.piccap.service -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -DCMAKE_TOOLCHAIN_FILE=/opt/webos-sdk-x86_64/1.0.g/sysroots/x86_64-webossdk-linux/usr/share/cmake/OEToolchainConfig.cmake .. && make hyperion-webos gm_backend halgal_backend dile_vt_backend vtcapture_backend
+      run: cmake -DCMAKE_CXX_FLAGS="-O3" -DCMAKE_C_FLAGS="-O3" -DCMAKE_BUILD_TYPE=${{ matrix.build-type }} -DCMAKE_TOOLCHAIN_FILE=/opt/webos-sdk-x86_64/1.0.g/sysroots/x86_64-webossdk-linux/usr/share/cmake/OEToolchainConfig.cmake .. && make hyperion-webos gm_backend halgal_backend dile_vt_backend vtcapture_backend
 
     - name: List files
       run: find .
