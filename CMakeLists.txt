@@ -36,7 +36,7 @@ add_custom_target(version
                    -P ${CMAKE_SOURCE_DIR}/GenerateVersionHeader.cmake
 )
 
-add_compile_options(-Wall -Wextra -Wpedantic -Werror -DSECURITY_COMPATIBILITY)
+add_compile_options(-Wall -Wextra -Wpedantic -Werror -O3 -DSECURITY_COMPATIBILITY)
 add_executable(hyperion-webos
     src/main.c
     src/settings.c
@@ -53,7 +53,7 @@ set_target_properties(hyperion-webos PROPERTIES
     INSTALL_RPATH "$ORIGIN:$ORIGIN/lib"
     BUILD_RPATH "$ORIGIN:$ORIGIN/lib"
     # TODO: use above options after upgrading to CMake 3.11
-    # LINK_FLAGS "-Wl,-rpath,'$ORIGIN:$ORIGIN/lib' -Wl,-z,origin"
+    LINK_FLAGS "-Wl,-rpath,'$ORIGIN:$ORIGIN/lib' -Wl,-z,origin"
 )
 target_include_directories(hyperion-webos PRIVATE ${CMAKE_BINARY_DIR})
 target_include_directories(hyperion-webos SYSTEM PUBLIC fbs)
